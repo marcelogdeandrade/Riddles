@@ -8,7 +8,7 @@ import 'react-s-alert/dist/s-alert-css-effects/scale.css';
 const PORT = '3002/';
 const API = 'http://localhost:' + PORT;
 
-class TestContainer extends Component {
+class RiddleContainer extends Component {
     constructor(props) {
         super(props);
         this.sendResult = this.sendResult.bind(this)
@@ -82,4 +82,4 @@ class TestContainer extends Component {
     }
 }
 
-export default TestContainer
+export default RiddleContainer

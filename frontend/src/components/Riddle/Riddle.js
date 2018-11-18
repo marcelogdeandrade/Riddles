@@ -49,7 +49,7 @@ const styles = theme => ({
     
 });
 
-class Test extends React.Component {
+class Riddle extends React.Component {
     constructor(props) {
         super(props);
         this.renderImage = this.renderImage.bind(this)
@@ -121,8 +121,8 @@ class Test extends React.Component {
   }
 }
 
-Test.propTypes = {
+Riddle.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Test);
+export default withStyles(styles)(Riddle);
