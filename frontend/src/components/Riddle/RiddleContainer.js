@@ -5,8 +5,16 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/scale.css';
 
+import EndGame from '../EndGame/EndGame'
+
 const PORT = '3002/';
-const API = 'http://localhost:' + PORT;
+let API;
+if (process.env.NODE_ENV === "production"){
+    API = 'https://backend-riddles.herokuapp.com/';
+} else {
+    API = 'http://localhost:' + PORT;
+}
+
 
 class RiddleContainer extends Component {
     constructor(props) {
@@ -18,6 +26,7 @@ class RiddleContainer extends Component {
             label: null,
             isLoading: true,
             curStage: 0,
+            endGame: false,
         }
       }
 
@@ -26,15 +35,16 @@ class RiddleContainer extends Component {
     }
     
     getImage(){
-        const url = API + '?stage=' + this.state.curStage.toString();
+        const url = API
         this.setState({isLoading: true})
         fetch(url)
             .then(response => response.json())
             .then(response => this.setState({image: response.image, label: response.label, isLoading: false}))
             .catch(error => console.log(error))
     }
+
     sendResult(answer) {
-        const url = API + '?stage=' + this.state.curStage.toString();
+        const url = API
         fetch(url, 
             { 
                 method: 'POST',
@@ -48,14 +58,19 @@ class RiddleContainer extends Component {
             .then(response => {
                 if (response.result === "Correct"){
                     this.setState({
-                        curStage: this.state.curStage + 1
+                        curStage: this.state.curStage + 1,
+                        image: response.next_stage.image,
+                        label: response.next_stage.label
                     })
                     Alert.success('Congratulations!', {
                         position: 'top-right',
                         effect: 'scale',
                         timeout: 5000
                     });
-                    this.getImage()
+                } else if (response.result === "Finish") {
+                    this.setState({
+                        endGame: true
+                    })
                 } else {
                     Alert.error('Wrong Answer', {
                         position: 'top-right',
@@ -67,7 +82,11 @@ class RiddleContainer extends Component {
             .catch(error => console.log(error))
     }
     render() {
-        return (
+        if (this.state.endGame){
+            return (
+                <EndGame />
+            )
+        } return (
             <div>
                 <Riddle 
                     image = {this.state.image}

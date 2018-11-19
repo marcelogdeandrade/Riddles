@@ -40,8 +40,9 @@ $ npm start
 
 And finally, just access `localhost:3000` to enter the Riddle.
 
-## Modifying riddles
+## Creating riddles
 
+Follow `README.md` on 
 To add or change the riddles, you need to change `images.js` and `answers.js` files. 
 
 Just add another item on both files and a new stage is added.

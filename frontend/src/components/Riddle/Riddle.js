@@ -44,7 +44,6 @@ const styles = theme => ({
     },
     input: {
         margin: "3%",
-        color: "white"
     }
     
 });
