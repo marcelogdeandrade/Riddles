@@ -8,6 +8,8 @@ A webapp project to create Riddle Games like Notpron with NodeJS and React
 
 ## Usage
 
+First, create your riddles following instructions on `README.md` on `src/riddles/`
+
 ### Backend
 
 1. Install all backend dependencies
@@ -40,10 +42,4 @@ $ npm start
 
 And finally, just access `localhost:3000` to enter the Riddle.
 
-## Creating riddles
-
-Follow `README.md` on 
-To add or change the riddles, you need to change `images.js` and `answers.js` files. 
-
-Just add another item on both files and a new stage is added.
 
