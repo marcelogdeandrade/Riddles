@@ -15,7 +15,7 @@ const Routes = (app) => {
         .post(function (req, res) {
             const answer = req.body.answer
             const stage = parseInt(req.body.stage)
-            if (checkRightAnswer(answer, Riddles[stage])) {
+            if (checkRightAnswer(answer, Riddles[stage].answer)) {
                 if (stage === Riddles.length - 1){
                     res.json({result: "Finish"});
                 } else {
